@@ -1,9 +1,9 @@
 <!DOCTYPE html-->
 <html>
 <head>
-<meta charset="UTF-8">
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" type="text/css" />
 <script src="phonegap.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="css/jquery-ui.css" type="text/css"  />
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/jquery-ui.js" type="text/javascript"></script>
@@ -183,7 +183,7 @@ $(document).ready(function(){
 </script>
 
 
-<script type="text/javascript">
+<script>
 
 function localize() {
 if (navigator.geolocation) {
@@ -198,14 +198,15 @@ var latitud = pos.coords.latitude;
 var longitud = pos.coords.longitude;
 var precision = pos.coords.accuracy;
 
-var contenedor = document.getElementById("map")
+
 document.getElementById("lti").innerHTML=latitud;
 document.getElementById("lgi").innerHTML=longitud;
 document.getElementById("psc").innerHTML=precision;
-var centro = new google.maps.LatLng(latitud,longitud);
-var propiedades = { zoom: 15, center: centro, mapTypeId: google.maps.MapTypeId.ROADMAP };
+var googlePos = new google.maps.LatLng(latitud,longitud);
+var propiedades = { zoom: 12, center: googlePos, mapTypeId: google.maps.MapTypeId.ROADMAP };
+var contenedor = document.getElementById("map")
 var map = new google.maps.Map(contenedor, propiedades);
-var marcador = new google.maps.Marker({ position: centro, map: map, title: "Tu posicion actual" });
+var marcador = new google.maps.Marker({ position: googlePos, map: map, title: "Tu posicion actual" });
 }
 
 
@@ -295,7 +296,7 @@ text-align:center;
 
 <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
 
-<div data-role="page" id="registros">
+<div data-role="page" id="registros" >
   <div data-role="header" >
     <p>registrar datos</p>
   </div>
@@ -306,7 +307,7 @@ text-align:center;
     <input type="text" id="direccion">
     <label for="giro">Giro:</label>
     <input type="text" id="giro">
-    <br/><h1>Google Maps Geoposicionamiento</h1>
+    <br/><h3>Google Maps Geoposicionamiento</h3>
 
 <label>Latitud: <span id="lti"></span></label>
 <label>Longitud: <span id="lgi"></span></label>
@@ -314,7 +315,7 @@ text-align:center;
 <!--p>Latitud: <span id="lti"></span></p-->
 <!--p>Longitud: <span id="lgi"></span></p-->
 <!--p>Presici&oacute;n: <span id="psc"></span></p-->
-<div id="map" ></div>
+  <div id="map" ></div>
 
     <input type="button" id="guardar" value="Guardar">
   </div>
@@ -322,6 +323,7 @@ text-align:center;
   <div data-role="footer">
   <p>Derechos reservados</p>
   </div>
+
 </div>
 
 <!--++++++++++++++++++++++++++++++++++++++++++++-->
